@@ -18,12 +18,12 @@ using System.Text.Json;
 namespace FastGithub
 {
     /// <summary>
-    /// �����
+    /// 启动项
     /// </summary>
     static class Startup
     {
         /// <summary>
-        /// ����ͨ������
+        /// 配置通用主机
         /// </summary>
         /// <param name="builder"></param>
         public static void ConfigureHost(this WebApplicationBuilder builder)
@@ -44,7 +44,7 @@ namespace FastGithub
         }
 
         /// <summary>
-        /// ����web����
+        /// 配置web主机
         /// </summary>
         /// <param name="builder"></param>
         public static void ConfigureWebHost(this WebApplicationBuilder builder)
@@ -69,7 +69,7 @@ namespace FastGithub
 
 
         /// <summary>
-        /// ��������
+        /// 配置配置
         /// </summary>
         /// <param name="builder"></param>
         public static void ConfigureConfiguration(this WebApplicationBuilder builder)
@@ -87,7 +87,7 @@ namespace FastGithub
 
 
         /// <summary>
-        /// ���÷���
+        /// 配置服务
         /// </summary>
         /// <param name="builder"></param>
         [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(Dictionary<string, DomainConfig>))]
@@ -113,7 +113,7 @@ namespace FastGithub
         }
 
         /// <summary>
-        /// ����Ӧ��
+        /// 配置应用
         /// </summary>
         /// <param name="app"></param>
         public static void ConfigureApp(this WebApplication app)

@@ -92,7 +92,6 @@ namespace FastGithub.DomainResolve
             if (cryptDns != null)
             {
                 yield return cryptDns;
-                yield return cryptDns;
             }
 
             foreach (var dns in this.fastGithubConfig.FallbackDns)
@@ -174,7 +173,7 @@ namespace FastGithub.DomainResolve
             }
             catch (Exception ex)
             {
-                this.logger.LogWarning($"{endPoint.Host}@{dns}->{ex.Message}");
+                this.logger.LogWarning($"解析域名异常 {endPoint.Host}@{dns}->{ex.Message}");
                 var expiration = IsSocketException(ex) ? this.maxTimeToLive : this.minTimeToLive;
                 return this.dnsLookupCache.Set(key, Array.Empty<IPAddress>(), expiration);
             }

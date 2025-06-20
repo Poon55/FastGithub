@@ -1,12 +1,28 @@
 # FastGithub
 github加速神器，解决github打不开、用户头像无法加载、releases无法上传下载、git-clone、git-pull、git-push失败等问题。
 
+```mermaid
+graph TD
+A[用户访问 github.com] --> B[本地DNS拦截 DnsInterceptor]
+  B --> C[数据包重定向 发送到127.0.0.1 即由domain->loopback]
+  C --> D[localhost路由拦截请求 进入代理]
+  D --> E[代理前选择DNS解析优化的IP]
+  E --> F[执行代理转发到海外节点/GitHub]
+  F --> G[返回数据经代理解密后传给用户]
+```
+
+```
+dnscrypt-proxy 一款开源的 DNS 代理工具
+WindivertDotnet 用于windows拦截和修改网络流量，即用于操作 WinDivert（Windows 数据包捕获和过滤驱动程序）
+Yarp.ReverseProxy.Forwarder 用于实现 HTTP 请求转发（即反向代理功能）
+```
+
 ### 1 写在前面
+
 * **fastgithub不具备“翻墙”功能,也没有相关的计划**
 * **fastgithub不支持Windows7等已被发行方停止支持的操作系统，并且也不会主动提供支持**
 * **fastgithub不能为您的游戏加速**
 * **fastgithub没有主动在github之外的任何渠道发布**
-  
 ### 2 部署方式
 #### 2.1 windows-x64桌面
 * 双击运行FastGithub.UI.exe 
@@ -29,12 +45,12 @@ github加速神器，解决github打不开、用户头像无法加载、releases
 * 安装cacert/fastgithub.cer并设置信任
 * 设置系统自动代理为`http://127.0.0.1:38457`，或手动代理http/https为`127.0.0.1:38457`
 * [具体配置详情](https://github.com/WangGithubUser/FastGitHub/blob/main/MacOSXConfig.md)
- 
+
 #### 2.6 docker-compose一键部署
 * 准备好docker 18.09, docker-compose.
 * 在源码目录下，有一个docker-compose.yaml 文件，专用于在实际项目中，临时使用github.com源码，而做的demo配置。
 * 根据自己的需要更新docker-compose.yaml中的sample和build镜像即可完成拉github.com源码加速，并基于源码做后续的操作。
- 
+
 ### 3 软件功能 
 * 提供域名的纯净IP解析；
 * 提供IP测速并选择最快的IP；
@@ -49,7 +65,7 @@ git操作提示`SSL certificate problem`</br>
 #### 4.2 firefox
 firefox提示`连接有潜在的安全问题`</br>
 设置->隐私与安全->证书->查看证书->证书颁发机构，导入cacert/fastgithub.cer，勾选“信任由此证书颁发机构来标识网站”
-  
+
 
 ### 5 安全性说明
 FastGithub为每台不同的主机生成自颁发CA证书，保存在cacert文件夹下。客户端设备需要安装和无条件信任自颁发的CA证书，请不要将证书私钥泄露给他人，以免造成损失。

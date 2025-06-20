@@ -79,6 +79,7 @@ namespace FastGithub.DomainResolve
                         dnsEndPoints.Add(new DnsEndPoint(item.Host, item.Port));
                     }
                 }
+                this.logger.LogInformation($"读取dns记录 {JsonSerializer.Serialize(dnsEndPoints)}");
                 return dnsEndPoints;
             }
             catch (Exception ex)
@@ -106,6 +107,7 @@ namespace FastGithub.DomainResolve
 
                 var endPointItems = dnsEndPoints.Select(item => new EndPointItem(item.Host, item.Port)).ToArray();
                 var utf8Json = JsonSerializer.SerializeToUtf8Bytes(endPointItems, EndPointItemsContext.Default.EndPointItemArray);
+                this.logger.LogInformation($"保存dns记录 {utf8Json}");
                 await File.WriteAllBytesAsync(dataFile, utf8Json, cancellationToken);
             }
             catch (Exception ex)

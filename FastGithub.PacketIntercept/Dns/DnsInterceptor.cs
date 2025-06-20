@@ -109,6 +109,7 @@ namespace FastGithub.PacketIntercept.Dns
                 return;
             }
 
+            //域名过滤
             var domain = question.Name;
             if (this.fastGithubConfig.IsMatch(question.Name.ToString()) == false)
             {
@@ -131,7 +132,7 @@ namespace FastGithub.PacketIntercept.Dns
             packet.CalcOutboundFlag(addr);
 
             addr.Flags |= WinDivertAddressFlag.Impostor;
-            this.logger.LogInformation($"修改DNS数据包 {domain}->{loopback}");
+            this.logger.LogInformation($"数据包重定向 {domain}->{loopback}");
         }
 
 

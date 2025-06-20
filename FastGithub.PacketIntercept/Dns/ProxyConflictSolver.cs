@@ -55,6 +55,7 @@ namespace FastGithub.PacketIntercept.Dns
         {
             this.SetToProxyOvride();
             this.CheckProxyConflict();
+            this.logger.LogInformation("已设置代理冲突解决");
             return Task.CompletedTask;
         }
 

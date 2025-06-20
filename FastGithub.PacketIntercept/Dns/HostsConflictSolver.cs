@@ -72,6 +72,7 @@ namespace FastGithub.PacketIntercept.Dns
                 try
                 {
                     await File.WriteAllTextAsync(hostsPath, hostsBuilder.ToString(), hostsEncoding, cancellationToken);
+                    this.logger.LogInformation("已设置hosts文件冲突解决");
                 }
                 catch (Exception ex)
                 {

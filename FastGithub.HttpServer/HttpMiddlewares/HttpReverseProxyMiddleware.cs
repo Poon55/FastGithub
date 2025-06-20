@@ -113,7 +113,7 @@ namespace FastGithub.HttpServer.HttpMiddlewares
 
             var baseUri = new Uri(defaultValue);
             var result = new Uri(baseUri, destination).ToString();
-            logger.LogInformation($"{defaultValue} => {result}");
+            logger.LogInformation($"代理目标 {defaultValue} => {result}");
             return result;
         }
 

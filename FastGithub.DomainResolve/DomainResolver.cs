@@ -95,7 +95,7 @@ namespace FastGithub.DomainResolve
                 if (oldSegmentums.SequenceEqual(newSegmentums) == false)
                 {
                     var addressArray = string.Join(", ", newSegmentums.Select(item => item.ToString()));
-                    this.logger.LogInformation($"{dnsEndPoint.Host}:{dnsEndPoint.Port}->[{addressArray}]");
+                    this.logger.LogInformation($"测速最优TOP{MAX_IP_COUNT} {dnsEndPoint.Host}:{dnsEndPoint.Port}->[{addressArray}]");
                 }
             }
         }

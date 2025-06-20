@@ -58,6 +58,7 @@ namespace FastGithub.DomainResolve
             try
             {
                 await this.StartCoreAsync(cancellationToken);
+                this.logger.LogInformation($"{this.processName} 已启动");
             }
             catch (Exception ex)
             {
@@ -115,6 +116,7 @@ namespace FastGithub.DomainResolve
                 {
                     this.process.Kill();
                 }
+                this.logger.LogInformation($"{this.processName} 已停止");
             }
             catch (Exception ex)
             {
